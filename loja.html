@@ -11,22 +11,23 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#fff;color:#1a1a1a;font-family:'Inter',sans-serif;overflow-x:hidden}
 .top{max-width:1200px;margin:0 auto;padding:22px 20px;display:flex;justify-content:space-between;align-items:center}
-.brand{font-family:'Cormorant Garamond',serif;letter-spacing:.35em;font-size:18px;text-transform:uppercase;text-decoration:none;color:#111}
+.brand{font-family:'Cormorant Garamond',serif;letter-spacing:.35em;font-size:18px;text-transform:uppercase;text-decoration:none;color:#111;white-space:nowrap}
 .top nav{display:flex;gap:18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
 .top nav a{text-decoration:none;color:#111;opacity:.75}
 .head{text-align:center;padding:10px 20px 8px}
 .head h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(36px,6vw,56px);letter-spacing:.1em;text-transform:uppercase}
 .head p{margin-top:6px;color:#555}
 .hint{text-align:center;font-size:13px;color:#777;padding:14px 20px}
-.strip{display:flex;gap:18px;overflow-x:auto;padding:10px 20px 28px;scroll-snap-type:x mandatory;cursor:grab}
-.strip.dragging{cursor:grabbing;scroll-snap-type:none}
-.card{flex:0 0 300px;scroll-snap-align:start;border:1px solid #eee;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.06)}
-.feat{aspect-ratio:3/4;background:#f2efe9;overflow:hidden;touch-action:pan-y}
-.feat img{width:100%;height:100%;object-fit:cover;display:block}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto;padding:16px 20px 28px}
+.card{border:1px solid #eee;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.feat{background:#f2efe9;overflow:hidden;touch-action:pan-y}
+.feat img{width:100%;height:auto;object-fit:contain;display:block}
 .thumbs{display:flex;gap:8px;padding:10px}
-.thumb{flex:1;border:2px solid #eee;border-radius:10px;overflow:hidden;padding:0;background:#f2efe9;cursor:pointer;height:64px}
+.thumb{flex:1;border:2px solid #eee;border-radius:10px;overflow:hidden;padding:0;background:#f2efe9;cursor:pointer;height:84px;position:relative}
 .thumb.active{border-color:#111}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.zoomthumb img{transform:scale(1.8);transform-origin:50% 35%}
+.thumb.zoomthumb span{position:absolute;left:6px;bottom:6px;background:#fff;padding:4px 8px;border-radius:999px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
 .thumb span{font-size:11px;display:block;padding:18px 4px}
 .card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;padding:0 16px}
 .cor{color:#777;padding:2px 16px;font-size:14px}
@@ -47,17 +48,17 @@ table{width:100%;border-collapse:collapse;margin-top:16px}
 th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee;font-size:14px}
 th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;width:38%}
 .close{float:right;border:1px solid #111;background:#fff;border-radius:999px;padding:9px 16px;cursor:pointer}
-@media(max-width:700px){.card{flex-basis:78vw}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr;gap:18px;padding:12px 16px 24px} .top{padding:16px} .brand{font-size:15px;letter-spacing:.22em} .top nav{gap:10px;font-size:11px} .thumb{height:76px}}
 </style>
 </head>
 <body>
 <header class="top"><a class="brand" href="index.html">FEM TERNO</a><nav><a href="index.html">Início</a><a href="estilista.html">Estilista</a><a href="loja.html">Loja</a></nav></header>
 <section class="head"><h1>Loja</h1><p>FEM TERNO — O poder feminino.</p></section>
-<p class="hint">Arraste os cards para o lado. Arraste a imagem em destaque para mudar de ângulo. Toque nas miniaturas em baixo da foto.</p>
-<div class="strip" id="strip">
+<div class="grid" id="grid">
     <article class="card" data-i="0">
       <div class="feat" data-i="0"><img src="images/terno-1.jpg" alt="Terno Castanho"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="0" data-j="0"><img src="images/terno-1.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="0" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="0" data-j="0"><img src="images/terno-1.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="0" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Castanho</h3>
       <p class="cor">Castanho</p>
       <p class="price">14 500 MT</p>
@@ -65,7 +66,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="1">
       <div class="feat" data-i="1"><img src="images/terno-2.jpg" alt="Terno Castanho Escuro"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="1" data-j="0"><img src="images/terno-2.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="1" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="1" data-j="0"><img src="images/terno-2.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="1" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Castanho Escuro</h3>
       <p class="cor">Castanho escuro</p>
       <p class="price">15 900 MT</p>
@@ -81,7 +82,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="3">
       <div class="feat" data-i="3"><img src="images/terno-4.jpg" alt="Terno Xadrez"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="3" data-j="0"><img src="images/terno-4.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="3" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="3" data-j="0"><img src="images/terno-4.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="3" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Xadrez</h3>
       <p class="cor">Xadrez borgonha</p>
       <p class="price">15 500 MT</p>
@@ -89,7 +90,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="4">
       <div class="feat" data-i="4"><img src="images/terno-5.jpg" alt="Terno Creme"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="4" data-j="0"><img src="images/terno-5.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="4" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="4" data-j="0"><img src="images/terno-5.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="4" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Creme</h3>
       <p class="cor">Creme</p>
       <p class="price">17 500 MT</p>
@@ -97,7 +98,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="5">
       <div class="feat" data-i="5"><img src="images/terno-6.jpg" alt="Terno Rosa Riscado"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="5" data-j="0"><img src="images/terno-6.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="5" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="5" data-j="0"><img src="images/terno-6.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="5" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Rosa Riscado</h3>
       <p class="cor">Rosa riscado</p>
       <p class="price">14 900 MT</p>
@@ -105,7 +106,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="6">
       <div class="feat" data-i="6"><img src="images/terno-7.jpg" alt="Terno Azul Claro"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="6" data-j="0"><img src="images/terno-7.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="6" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="6" data-j="0"><img src="images/terno-7.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="6" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Azul Claro</h3>
       <p class="cor">Azul claro</p>
       <p class="price">12 900 MT</p>
@@ -113,7 +114,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="7">
       <div class="feat" data-i="7"><img src="images/terno-8.jpg" alt="Terno Bege 3 Peças"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="7" data-j="0"><img src="images/terno-8.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="7" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="7" data-j="0"><img src="images/terno-8.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="7" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Bege 3 Peças</h3>
       <p class="cor">Bege</p>
       <p class="price">18 500 MT</p>
@@ -129,7 +130,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="9">
       <div class="feat" data-i="9"><img src="images/loja-3.jpg" alt="Terno Vermelho"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="9" data-j="0"><img src="images/loja-3.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="9" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="9" data-j="0"><img src="images/loja-3.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="9" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Vermelho</h3>
       <p class="cor">Vermelho</p>
       <p class="price">14 900 MT</p>
@@ -137,7 +138,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="10">
       <div class="feat" data-i="10"><img src="images/loja-4.jpg" alt="Terno Rosa Claro"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="10" data-j="0"><img src="images/loja-4.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="10" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="10" data-j="0"><img src="images/loja-4.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="10" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Rosa Claro</h3>
       <p class="cor">Rosa claro</p>
       <p class="price">13 500 MT</p>
@@ -145,7 +146,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="11">
       <div class="feat" data-i="11"><img src="images/loja-5.jpg" alt="Terno Bordô com Gravata"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="11" data-j="0"><img src="images/loja-5.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="11" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="11" data-j="0"><img src="images/loja-5.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="11" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Bordô com Gravata</h3>
       <p class="cor">Bordô</p>
       <p class="price">16 200 MT</p>
@@ -153,7 +154,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="12">
       <div class="feat" data-i="12"><img src="images/loja-6.jpg" alt="Terno Bordô com Lenço"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="12" data-j="0"><img src="images/loja-6.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="12" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="12" data-j="0"><img src="images/loja-6.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="12" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Bordô com Lenço</h3>
       <p class="cor">Bordô</p>
       <p class="price">15 800 MT</p>
@@ -161,7 +162,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="13">
       <div class="feat" data-i="13"><img src="images/loja-8.jpg" alt="Terno Branco com Gravata Preta"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="13" data-j="0"><img src="images/loja-8.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="13" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="13" data-j="0"><img src="images/loja-8.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="13" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Branco com Gravata Preta</h3>
       <p class="cor">Branco</p>
       <p class="price">18 500 MT</p>
@@ -169,7 +170,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="14">
       <div class="feat" data-i="14"><img src="images/loja-9.jpg" alt="Terno Branco com Faixa"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="14" data-j="0"><img src="images/loja-9.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="14" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="14" data-j="0"><img src="images/loja-9.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="14" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Branco com Faixa</h3>
       <p class="cor">Branco</p>
       <p class="price">17 900 MT</p>
@@ -177,7 +178,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="15">
       <div class="feat" data-i="15"><img src="images/loja-10.jpg" alt="Terno Amarelo"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="15" data-j="0"><img src="images/loja-10.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="15" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="15" data-j="0"><img src="images/loja-10.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="15" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Amarelo</h3>
       <p class="cor">Amarelo</p>
       <p class="price">14 500 MT</p>
@@ -185,7 +186,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="16">
       <div class="feat" data-i="16"><img src="images/loja-11.jpg" alt="Terno Branco Smoking"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="16" data-j="0"><img src="images/loja-11.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="16" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="16" data-j="0"><img src="images/loja-11.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="16" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Branco Smoking</h3>
       <p class="cor">Branco, lapela preta</p>
       <p class="price">19 500 MT</p>
@@ -201,7 +202,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
     </article>
     <article class="card" data-i="18">
       <div class="feat" data-i="18"><img src="images/loja-14.jpg" alt="Terno Preto Riscado"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="18" data-j="0"><img src="images/loja-14.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="18" data-j="0"><span>Detalhe do tecido</span></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="18" data-j="0"><img src="images/loja-14.jpg" alt=""></button><button type="button" class="thumb zoomthumb" data-i="18" data-j="0"><img src="" alt="" class="zoomimg"><span>Tecido</span></button></div>
       <h3>Terno Preto Riscado</h3>
       <p class="cor">Preto riscado</p>
       <p class="price">15 500 MT</p>
@@ -250,10 +251,7 @@ document.querySelectorAll('.feat').forEach(function(f){
     sx=null;
   },{passive:true});
 });
-var strip=document.getElementById('strip'); var down=false, sx2=0, sl=0;
-strip.addEventListener('pointerdown',function(e){down=true; sx2=e.clientX; sl=strip.scrollLeft; strip.classList.add('dragging');});
-window.addEventListener('pointerup',function(){down=false; strip.classList.remove('dragging');});
-strip.addEventListener('pointermove',function(e){if(!down) return; strip.scrollLeft=sl-(e.clientX-sx2);});
+document.querySelectorAll('.thumb.zoomthumb').forEach(function(z){ var i=parseInt(z.dataset.i); var img=z.querySelector('.zoomimg'); if(img) img.src=PRODUCTS[i].imgs[0]; });
 var modal=document.getElementById('modal');
 function openM(i){
   var p=PRODUCTS[i];
