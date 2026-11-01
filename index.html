@@ -26,12 +26,7 @@
   .tagline{margin-top:2px;font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,28px);letter-spacing:.12em;text-transform:uppercase}
   .enter{display:inline-block;margin-top:20px;padding:13px 34px;border:1px solid rgba(255,255,255,.9);border-radius:999px;color:#fff;text-decoration:none;font-size:13px;letter-spacing:.28em;text-transform:uppercase;background:rgba(0,0,0,.18);backdrop-filter:blur(4px)}
   .enter:hover{background:#fff;color:#111}
-  .progress{position:absolute;left:24px;right:24px;bottom:0;height:3px;background:rgba(255,255,255,.25);z-index:6}
-  .progress i{display:block;height:100%;width:0;background:#fff}
-  .dots{position:absolute;right:24px;bottom:38px;z-index:6;display:flex;gap:8px}
-  .dots button{width:26px;height:3px;border:0;background:rgba(255,255,255,.35);cursor:pointer;padding:0}
-  .dots button.active{background:#fff}
-  .dots button:focus-visible,.enter:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .enter:focus-visible{outline:2px solid #fff;outline-offset:3px}
   #colecao{background:#f5f1ec;color:#1a1a1a;padding:56px 20px 64px}
   #colecao h2{font-family:'Cormorant Garamond',serif;font-weight:400;text-align:center;letter-spacing:.35em;font-size:20px;text-transform:uppercase}
   #colecao .sig{text-align:center;font-family:'Great Vibes',cursive;font-size:42px;margin-top:6px}
@@ -42,8 +37,7 @@
     .top{padding:18px 18px}
     .brand{font-size:16px;letter-spacing:.32em}
     .hero-text{left:18px;right:18px;bottom:64px}
-    .dots{left:18px;right:auto;bottom:26px}
-    .grid{grid-template-columns:1fr;gap:14px}
+      .grid{grid-template-columns:1fr;gap:14px}
     #colecao{padding:44px 16px 52px}
   }
 </style>
@@ -70,17 +64,6 @@
     <a class="enter" href="estilista.html">Entrar</a>
   </div>
 
-  <div class="progress"><i id="prog"></i></div>
-  <div class="dots" role="group" aria-label="Mudar de foto">
-    <button type="button" class="active" data-go="0" aria-label="Foto 1"></button>
-    <button type="button" data-go="1" aria-label="Foto 2"></button>
-    <button type="button" data-go="2" aria-label="Foto 3"></button>
-    <button type="button" data-go="3" aria-label="Foto 4"></button>
-    <button type="button" data-go="4" aria-label="Foto 5"></button>
-    <button type="button" data-go="5" aria-label="Foto 6"></button>
-    <button type="button" data-go="6" aria-label="Foto 7"></button>
-    <button type="button" data-go="7" aria-label="Foto 8"></button>
-  </div>
 </section>
 
 
@@ -104,12 +87,6 @@
     if (timer) clearInterval(timer);
     timer = setInterval(function(){ show(current + 1); }, 4000);
   }
-  dots.forEach(function(d){
-    d.addEventListener('click', function(){
-      show(parseInt(d.getAttribute('data-go'), 10));
-      restart();
-    });
-  });
   var startX = null;
   var hero = document.getElementById('hero');
   hero.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
