@@ -20,9 +20,9 @@
   .slide .main{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
   .top{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px 24px}
   .brand{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:.42em;font-size:19px;text-transform:uppercase}
-  .counter{font-size:12px;letter-spacing:.25em;opacity:.85}
   .hero-text{position:absolute;left:24px;right:24px;bottom:34px;z-index:5}
-  .signature{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(56px,12vw,104px);line-height:1;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .signature{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(56px,12vw,104px);line-height:1;background:linear-gradient(90deg,#111 0%,#7a1216 20%,#c0392b 40%,#e74c3c 50%,#c0392b 60%,#7a1216 80%,#111 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 14px rgba(0,0,0,.55));animation:gradScroll 7s linear infinite}
+  @keyframes gradScroll{to{background-position:200% 0}}
   .tagline{margin-top:2px;font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,28px);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 14px rgba(0,0,0,.55)}
   .enter{display:inline-block;margin-top:20px;padding:13px 34px;border:1px solid rgba(255,255,255,.9);border-radius:999px;color:#fff;text-decoration:none;font-size:13px;letter-spacing:.28em;text-transform:uppercase;background:rgba(0,0,0,.18);backdrop-filter:blur(4px)}
   .enter:hover{background:#fff;color:#111}
@@ -55,7 +55,6 @@
 
   <div class="top">
     <div class="brand">FEM TERNO</div>
-    <div class="counter"><span id="num">01</span> / 08</div>
   </div>
 
   <div class="hero-text">
@@ -72,7 +71,6 @@
 (function(){
   var slides = document.querySelectorAll('.slide');
   var dots = document.querySelectorAll('.dots button');
-  var num = document.getElementById('num');
   var prog = document.getElementById('prog');
   var current = 0;
   var timer = null;
@@ -80,7 +78,6 @@
     current = (i + slides.length) % slides.length;
     slides.forEach(function(s, k){ s.classList.toggle('active', k === current); });
     dots.forEach(function(d, k){ d.classList.toggle('active', k === current); });
-    num.textContent = String(current + 1).padStart(2, '0');
     if (prog) { prog.style.transition = 'none'; prog.style.width = '0%'; void prog.offsetWidth; prog.style.transition = 'width 4s linear'; prog.style.width = '100%'; }
   }
   function restart(){
