@@ -44,13 +44,16 @@
 <section class="hero" id="hero" aria-label="FEM TERNO">
   <div class="stage">
   <div class="slide active"><img class="main" src="images/terno-1.jpg" alt="Terno feminino 1"></div>
+  <div class="slide"><video class="main" src="videos/hero-video-1-asos.mp4" muted playsinline preload="metadata"></video></div>
   <div class="slide"><img class="main" src="images/terno-2.jpg" alt="Terno feminino 2"></div>
+  <div class="slide"><video class="main" src="videos/hero-video-2-bossmoves.mp4" muted playsinline preload="metadata"></video></div>
   <div class="slide"><img class="main" src="images/loja-15.jpg" alt="Terno feminino 3"></div>
+  <div class="slide"><video class="main" src="videos/hero-video-3-regirl.mp4" muted playsinline preload="metadata"></video></div>
   <div class="slide"><img class="main" src="images/terno-4.jpg" alt="Terno feminino 4"></div>
   <div class="slide"><img class="main" src="images/terno-5.jpg" alt="Terno feminino 5"></div>
+  <div class="slide"><video class="main" src="videos/hero-video-4-hm.mp4" muted playsinline preload="metadata"></video></div>
   <div class="slide"><img class="main" src="images/terno-6.jpg" alt="Terno feminino 6"></div>
   <div class="slide"><img class="main" src="images/terno-7.jpg" alt="Terno feminino 7"></div>
-  <div class="slide"><img class="main" src="images/terno-8.jpg" alt="Terno feminino 8"></div>
 
   </div>
 
@@ -72,16 +75,45 @@
   var prog = document.getElementById('prog');
   var current = 0;
   var timer = null;
+  function clearTimer(){
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
+  function scheduleNext(){
+    clearTimer();
+    var s = slides[current];
+    var v = s ? s.querySelector('video') : null;
+    // foto: 4s; vídeo: até ao fim, com limite de 12s
+    timer = setTimeout(function(){ show(current + 1); }, v ? 12000 : 4000);
+  }
+  function restart(){ scheduleNext(); }
   function show(i){
     current = (i + slides.length) % slides.length;
-    slides.forEach(function(s, k){ s.classList.toggle('active', k === current); });
+    slides.forEach(function(s, k){
+      s.classList.toggle('active', k === current);
+      var v = s.querySelector('video');
+      if (v) {
+        if (k === current) {
+          v.muted = true;
+          var pr = v.play();
+          if (pr && pr.catch) pr.catch(function(){});
+        } else {
+          v.pause();
+        }
+      }
+    });
     dots.forEach(function(d, k){ d.classList.toggle('active', k === current); });
     if (prog) { prog.style.transition = 'none'; prog.style.width = '0%'; void prog.offsetWidth; prog.style.transition = 'width 4s linear'; prog.style.width = '100%'; }
+    scheduleNext();
   }
-  function restart(){
-    if (timer) clearInterval(timer);
-    timer = setInterval(function(){ show(current + 1); }, 4000);
-  }
+  // avançar ao fim de cada vídeo (só se esse slide ainda estiver ativo)
+  slides.forEach(function(s){
+    var v = s.querySelector('video');
+    if (v) {
+      v.addEventListener('ended', function(){
+        if (slides[current] === s) show(current + 1);
+      });
+    }
+  });
   var startX = null;
   var hero = document.getElementById('hero');
   hero.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
@@ -91,7 +123,16 @@
     if (Math.abs(dx) > 40){ show(current + (dx < 0 ? 1 : -1)); restart(); }
     startX = null;
   }, {passive:true});
-  document.addEventListener('visibilitychange', function(){ if (!document.hidden) { show(current); restart(); } });
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) {
+      clearTimer();
+      var s = slides[current];
+      var v = s ? s.querySelector('video') : null;
+      if (v) v.pause();
+    } else {
+      show(current);
+    }
+  });
   show(0);
   restart();
 })();
