@@ -17,21 +17,14 @@
   .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
   .slide.active{opacity:1;pointer-events:auto}
   .slide .main{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
-  .top{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px 24px}
+  .top{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:center;align-items:center;padding:22px 24px}
   .brand{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:.42em;font-size:19px;text-transform:uppercase;color:#1a1a1a}
-  .hactions{display:flex;gap:8px;align-items:center}
-  .hbtn{padding:10px 16px;border:1px solid #1a1a1a;border-radius:999px;background:transparent;color:#1a1a1a;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-height:42px}
-  .hbtn:hover{background:#1a1a1a;color:#fff}
   .hero-text{padding:10px 24px 26px;z-index:5}
   .signature{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(56px,12vw,104px);line-height:1;background:linear-gradient(90deg,#111 0%,#7a1216 20%,#c0392b 40%,#e74c3c 50%,#c0392b 60%,#7a1216 80%,#111 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gradScroll 7s linear infinite}
   @keyframes gradScroll{to{background-position:200% 0}}
   .tagline{margin-top:2px;font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,28px);letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-  .enter{display:inline-block;padding:14px 30px;border:1px solid #1a1a1a;border-radius:999px;color:#1a1a1a;text-decoration:none;font-size:13px;letter-spacing:.28em;text-transform:uppercase;background:transparent;min-height:48px}
-  .enter:hover{background:#1a1a1a;color:#fff}
-  .enter.solid{background:#1a1a1a;color:#fff}
-  .enter.solid:hover{background:#7a1216;border-color:#7a1216}
-  .enter:focus-visible{outline:2px solid #1a1a1a;outline-offset:3px}
+  .shop-link{display:inline-block;margin-top:18px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#1a1a1a;text-decoration:none;border-bottom:1px solid #1a1a1a;padding-bottom:4px}
+  .shop-link:focus-visible{outline:2px solid #1a1a1a;outline-offset:3px}
   #colecao{background:#f5f1ec;color:#1a1a1a;padding:56px 20px 64px}
   #colecao h2{font-family:'Cormorant Garamond',serif;font-weight:400;text-align:center;letter-spacing:.35em;font-size:20px;text-transform:uppercase}
   #colecao .sig{text-align:center;font-family:'Great Vibes',cursive;font-size:42px;margin-top:6px}
@@ -42,7 +35,6 @@
     .top{padding:18px 18px}
     .brand{font-size:16px;letter-spacing:.32em}
     .hero-text{padding:8px 18px 22px}
-    .hbtn{padding:9px 12px;font-size:11px;min-height:40px}
       .grid{grid-template-columns:1fr;gap:14px}
     #colecao{padding:44px 16px 52px}
   }
@@ -64,13 +56,12 @@
 
   <div class="top">
     <div class="brand">FEM TERNO</div>
-    <div class="hactions"><button type="button" class="hbtn" id="cartBtn">Carrinho <span class="fem-count" id="cartCount">0</span></button><button type="button" class="hbtn" id="accessBtn">Acesso</button></div>
   </div>
 
   <div class="hero-text">
     <div class="signature">Fem Terno</div>
     <div class="tagline">O poder feminino.</div>
-    <div class="hero-cta"><a class="enter solid" href="loja.html">Ver a loja</a><a class="enter" href="estilista.html">Entrar</a></div>
+    <a class="shop-link" href="loja.html">Ver a loja →</a>
   </div>
 
 </section>
