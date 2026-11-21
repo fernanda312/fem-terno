@@ -10,7 +10,10 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#fff;color:#1a1a1a;font-family:'Inter',sans-serif;overflow-x:hidden}
-.top{max-width:1200px;margin:0 auto;padding:22px 20px;display:flex;justify-content:space-between;align-items:center}
+.top{max-width:1200px;margin:0 auto;padding:22px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.hactions{display:flex;gap:8px;align-items:center}
+.hbtn{padding:10px 16px;border:1px solid #111;border-radius:999px;background:#fff;color:#111;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-height:42px}
+.hbtn:hover{background:#111;color:#fff}
 .brand{font-family:'Cormorant Garamond',serif;letter-spacing:.35em;font-size:18px;text-transform:uppercase;text-decoration:none;color:#111;white-space:nowrap}
 .top nav{display:flex;gap:18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
 .top nav a{text-decoration:none;color:#111;opacity:.75}
@@ -32,8 +35,11 @@ body{background:#fff;color:#1a1a1a;font-family:'Inter',sans-serif;overflow-x:hid
 .card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;padding:0 16px}
 .cor{color:#777;padding:2px 16px;font-size:14px}
 .price{font-size:19px;padding:8px 16px 12px}
-.ver{margin:0 16px 16px;padding:12px 26px;border-radius:999px;border:1px solid #111;background:#111;color:#fff;cursor:pointer;letter-spacing:.2em;text-transform:uppercase;font-size:12px}
-.ver:hover{background:#fff;color:#111}
+.card-actions{display:flex;gap:10px;padding:0 16px 16px}
+.ver{flex:1;margin:0;padding:13px 10px;border-radius:999px;border:1px solid #111;background:#fff;color:#111;cursor:pointer;letter-spacing:.2em;text-transform:uppercase;font-size:12px;min-height:46px}
+.ver:hover{background:#111;color:#fff}
+.buy{flex:1;margin:0;padding:13px 10px;border-radius:999px;border:1px solid #111;background:#111;color:#fff;cursor:pointer;letter-spacing:.2em;text-transform:uppercase;font-size:12px;min-height:46px}
+.buy:hover{background:#7a1216;border-color:#7a1216}
 .note{max-width:900px;margin:0 auto;padding:0 20px 40px;color:#777;line-height:1.7;text-align:center}
 footer{text-align:center;padding:28px 20px;border-top:1px solid #eee;font-family:'Cormorant Garamond',serif;letter-spacing:.25em;font-size:14px;text-transform:uppercase}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-start;justify-content:center;padding:20px;overflow:auto;z-index:50}
@@ -46,14 +52,24 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid #eee;font-family
 .sheet .price{font-size:22px;margin-top:4px}
 table{width:100%;border-collapse:collapse;margin-top:16px}
 th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee;font-size:14px}
-th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;width:38%}
+table.info th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;width:38%}
+.sizes-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:16px}
+table.sizes{margin-top:0;min-width:320px}
+table.sizes th,table.sizes td{padding:7px 4px;font-size:12px;white-space:nowrap;text-align:center}
+table.sizes th:first-child,table.sizes td:first-child{text-align:left}
+table.sizes th{width:auto;font-size:15px}
+.buyrow{display:flex;gap:10px;align-items:flex-end;margin-top:16px;flex-wrap:wrap}
+.buyrow label{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.buyrow select{font-size:16px;padding:12px;border:1px solid #ccc;border-radius:12px;background:#fff;min-height:48px;margin-top:6px}
+#mBuy{flex:1;min-width:180px;padding:14px;border-radius:999px;border:1px solid #111;background:#111;color:#fff;cursor:pointer;letter-spacing:.2em;text-transform:uppercase;font-size:13px;min-height:48px}
+#mBuy:hover{background:#7a1216;border-color:#7a1216}
 .close{float:right;border:1px solid #111;background:#fff;border-radius:999px;padding:9px 16px;cursor:pointer}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.grid{grid-template-columns:1fr;gap:18px;padding:12px 16px 24px} .top{padding:16px} .brand{font-size:15px;letter-spacing:.22em} .top nav{gap:10px;font-size:11px} .thumb{height:76px}}
+@media(max-width:600px){.grid{grid-template-columns:1fr;gap:18px;padding:12px 16px 24px} .top{padding:16px} .brand{font-size:15px;letter-spacing:.22em} .top nav{order:3;flex-basis:100%;justify-content:center;gap:16px;font-size:11px} .hbtn{padding:9px 12px;font-size:11px;min-height:40px} .thumb{height:76px} .modal{padding:8px} .sheet{padding:16px} .zoom{height:200px} .sheet h2{font-size:26px} .card h3{font-size:20px}}
 </style>
 </head>
 <body>
-<header class="top"><a class="brand" href="index.html">FEM TERNO</a><nav><a href="index.html">Início</a><a href="estilista.html">Estilista</a><a href="loja.html">Loja</a></nav></header>
+<header class="top"><a class="brand" href="index.html">FEM TERNO</a><nav><a href="index.html">Início</a><a href="estilista.html">Estilista</a><a href="loja.html">Loja</a></nav><div class="hactions"><button type="button" class="hbtn" id="cartBtn">Carrinho <span class="fem-count" id="cartCount">0</span></button><button type="button" class="hbtn" id="accessBtn">Acesso</button></div></header>
 <section class="head"><h1>Loja</h1><p>FEM TERNO — O poder feminino.</p></section>
 <div class="grid" id="grid">
     <article class="card" data-i="0">
@@ -62,7 +78,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Castanho</h3>
       <p class="cor">Castanho</p>
       <p class="price">14 500 MT</p>
-      <button type="button" class="ver" data-i="0">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="0">Ver</button><button type="button" class="buy" data-i="0">Comprar</button></div>
     </article>
     <article class="card" data-i="1">
       <div class="feat" data-i="1"><img src="images/terno-2.jpg" alt="Terno Castanho Escuro"></div>
@@ -70,7 +86,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Castanho Escuro</h3>
       <p class="cor">Castanho escuro</p>
       <p class="price">15 900 MT</p>
-      <button type="button" class="ver" data-i="1">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="1">Ver</button><button type="button" class="buy" data-i="1">Comprar</button></div>
     </article>
     <article class="card" data-i="2">
       <div class="feat" data-i="2"><img src="images/loja-15.jpg" alt="Terno Castanho Riscado"></div>
@@ -78,7 +94,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Castanho Riscado</h3>
       <p class="cor">Castanho riscado</p>
       <p class="price">16 500 MT</p>
-      <button type="button" class="ver" data-i="2">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="2">Ver</button><button type="button" class="buy" data-i="2">Comprar</button></div>
     </article>
     <article class="card" data-i="3">
       <div class="feat" data-i="3"><img src="images/terno-4.jpg" alt="Terno Xadrez"></div>
@@ -86,7 +102,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Xadrez</h3>
       <p class="cor">Xadrez borgonha</p>
       <p class="price">15 500 MT</p>
-      <button type="button" class="ver" data-i="3">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="3">Ver</button><button type="button" class="buy" data-i="3">Comprar</button></div>
     </article>
     <article class="card" data-i="4">
       <div class="feat" data-i="4"><img src="images/terno-5.jpg" alt="Terno Creme"></div>
@@ -94,7 +110,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Creme</h3>
       <p class="cor">Creme</p>
       <p class="price">17 500 MT</p>
-      <button type="button" class="ver" data-i="4">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="4">Ver</button><button type="button" class="buy" data-i="4">Comprar</button></div>
     </article>
     <article class="card" data-i="5">
       <div class="feat" data-i="5"><img src="images/terno-6.jpg" alt="Terno Rosa Riscado"></div>
@@ -102,7 +118,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Rosa Riscado</h3>
       <p class="cor">Rosa riscado</p>
       <p class="price">14 900 MT</p>
-      <button type="button" class="ver" data-i="5">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="5">Ver</button><button type="button" class="buy" data-i="5">Comprar</button></div>
     </article>
     <article class="card" data-i="6">
       <div class="feat" data-i="6"><img src="images/terno-7.jpg" alt="Terno Azul Claro"></div>
@@ -110,7 +126,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Azul Claro</h3>
       <p class="cor">Azul claro</p>
       <p class="price">12 900 MT</p>
-      <button type="button" class="ver" data-i="6">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="6">Ver</button><button type="button" class="buy" data-i="6">Comprar</button></div>
     </article>
     <article class="card" data-i="7">
       <div class="feat" data-i="7"><img src="images/terno-8.jpg" alt="Terno Bege 3 Peças"></div>
@@ -118,7 +134,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Bege 3 Peças</h3>
       <p class="cor">Bege</p>
       <p class="price">18 500 MT</p>
-      <button type="button" class="ver" data-i="7">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="7">Ver</button><button type="button" class="buy" data-i="7">Comprar</button></div>
     </article>
     <article class="card" data-i="8">
       <div class="feat" data-i="8"><img src="images/loja-2.jpg" alt="Terno Bordô Longo"></div>
@@ -126,7 +142,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Bordô Longo</h3>
       <p class="cor">Bordô</p>
       <p class="price">17 500 MT</p>
-      <button type="button" class="ver" data-i="8">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="8">Ver</button><button type="button" class="buy" data-i="8">Comprar</button></div>
     </article>
     <article class="card" data-i="9">
       <div class="feat" data-i="9"><img src="images/loja-3.jpg" alt="Terno Vermelho"></div>
@@ -134,7 +150,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Vermelho</h3>
       <p class="cor">Vermelho</p>
       <p class="price">14 900 MT</p>
-      <button type="button" class="ver" data-i="9">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="9">Ver</button><button type="button" class="buy" data-i="9">Comprar</button></div>
     </article>
     <article class="card" data-i="10">
       <div class="feat" data-i="10"><img src="images/loja-4.jpg" alt="Terno Rosa Claro"></div>
@@ -142,7 +158,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Rosa Claro</h3>
       <p class="cor">Rosa claro</p>
       <p class="price">13 500 MT</p>
-      <button type="button" class="ver" data-i="10">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="10">Ver</button><button type="button" class="buy" data-i="10">Comprar</button></div>
     </article>
     <article class="card" data-i="11">
       <div class="feat" data-i="11"><img src="images/loja-5.jpg" alt="Terno Bordô com Gravata"></div>
@@ -150,7 +166,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Bordô com Gravata</h3>
       <p class="cor">Bordô</p>
       <p class="price">16 200 MT</p>
-      <button type="button" class="ver" data-i="11">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="11">Ver</button><button type="button" class="buy" data-i="11">Comprar</button></div>
     </article>
     <article class="card" data-i="12">
       <div class="feat" data-i="12"><img src="images/loja-6.jpg" alt="Terno Bordô com Lenço"></div>
@@ -158,7 +174,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Bordô com Lenço</h3>
       <p class="cor">Bordô</p>
       <p class="price">15 800 MT</p>
-      <button type="button" class="ver" data-i="12">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="12">Ver</button><button type="button" class="buy" data-i="12">Comprar</button></div>
     </article>
     <article class="card" data-i="13">
       <div class="feat" data-i="13"><img src="images/loja-8.jpg" alt="Terno Branco com Gravata Preta"></div>
@@ -166,7 +182,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Branco com Gravata Preta</h3>
       <p class="cor">Branco</p>
       <p class="price">18 500 MT</p>
-      <button type="button" class="ver" data-i="13">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="13">Ver</button><button type="button" class="buy" data-i="13">Comprar</button></div>
     </article>
     <article class="card" data-i="14">
       <div class="feat" data-i="14"><img src="images/loja-9.jpg" alt="Terno Branco com Faixa"></div>
@@ -174,7 +190,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Branco com Faixa</h3>
       <p class="cor">Branco</p>
       <p class="price">17 900 MT</p>
-      <button type="button" class="ver" data-i="14">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="14">Ver</button><button type="button" class="buy" data-i="14">Comprar</button></div>
     </article>
     <article class="card" data-i="15">
       <div class="feat" data-i="15"><img src="images/loja-10.jpg" alt="Terno Amarelo"></div>
@@ -182,7 +198,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Amarelo</h3>
       <p class="cor">Amarelo</p>
       <p class="price">14 500 MT</p>
-      <button type="button" class="ver" data-i="15">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="15">Ver</button><button type="button" class="buy" data-i="15">Comprar</button></div>
     </article>
     <article class="card" data-i="16">
       <div class="feat" data-i="16"><img src="images/loja-11.jpg" alt="Terno Branco Smoking"></div>
@@ -190,15 +206,15 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Branco Smoking</h3>
       <p class="cor">Branco, lapela preta</p>
       <p class="price">19 500 MT</p>
-      <button type="button" class="ver" data-i="16">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="16">Ver</button><button type="button" class="buy" data-i="16">Comprar</button></div>
     </article>
     <article class="card" data-i="17">
       <div class="feat" data-i="17"><img src="images/loja-12.jpg" alt="Terno Bege com Gravata Vermelha"></div>
-      <div class="thumbs"><button type="button" class="thumb active" data-i="17" data-j="0"><img src="images/loja-12.jpg" alt=""></button><button type="button" class="thumb" data-i="17" data-j="1"><img src="images/loja-13.jpg" alt=""></button></div>
+      <div class="thumbs"><button type="button" class="thumb active" data-i="17" data-j="0"><img src="images/loja-12.jpg" alt=""></button></div>
       <h3>Terno Bege com Gravata Vermelha</h3>
       <p class="cor">Bege</p>
       <p class="price">16 900 MT</p>
-      <button type="button" class="ver" data-i="17">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="17">Ver</button><button type="button" class="buy" data-i="17">Comprar</button></div>
     </article>
     <article class="card" data-i="18">
       <div class="feat" data-i="18"><img src="images/loja-14.jpg" alt="Terno Preto Riscado"></div>
@@ -206,7 +222,7 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
       <h3>Terno Preto Riscado</h3>
       <p class="cor">Preto riscado</p>
       <p class="price">15 500 MT</p>
-      <button type="button" class="ver" data-i="18">Ver</button>
+      <div class="card-actions"><button type="button" class="ver" data-i="18">Ver</button><button type="button" class="buy" data-i="18">Comprar</button></div>
     </article></div>
 <p class="note">Preços em MT, a confirmar no atelier. Tecido e medidas indicados no detalhe são uma guia — confirme no atelier antes de encomendar.</p>
 <footer>FEM TERNO — O poder feminino.</footer>
@@ -215,23 +231,24 @@ th{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.05em;wi
 <img class="main" id="mImg" src="" alt="">
 <div class="zoom" id="zoom"><span>Detalhe do tecido</span></div>
 <h2 id="mName"></h2><p class="price" id="mPrice"></p>
-<table>
+<div class="buyrow"><div><label for="mSize">Tamanho</label><br><select id="mSize"><option>XS</option><option>S</option><option selected>M</option><option>L</option><option>XL</option></select></div><button type="button" id="mBuy">Comprar</button></div>
+<table class="info">
 <tr><th>Cor</th><td id="mCor"></td></tr>
 <tr><th>Tecido</th><td id="mTecido"></td></tr>
 <tr><th>Corte</th><td>Alfaiataria feminina, calça comprida</td></tr>
 <tr><th>Tamanhos</th><td>XS – XL, e sob medida no atelier</td></tr>
 <tr><th>Medidas</th><td>Guia abaixo — confirmar no atelier</td></tr>
 </table>
-<table>
+<div class="sizes-wrap"><table class="sizes">
 <tr><th>Tamanho</th><th>Ombro</th><th>Busto</th><th>Cintura</th><th>Anca</th></tr>
 <tr><td>S</td><td>38 cm</td><td>86–90 cm</td><td>66–70 cm</td><td>92–96 cm</td></tr>
 <tr><td>M</td><td>40 cm</td><td>90–94 cm</td><td>70–74 cm</td><td>96–100 cm</td></tr>
 <tr><td>L</td><td>42 cm</td><td>94–98 cm</td><td>74–78 cm</td><td>100–104 cm</td></tr>
 <tr><td>XL</td><td>44 cm</td><td>98–102 cm</td><td>78–82 cm</td><td>104–108 cm</td></tr>
-</table>
+</table></div>
 </div></div>
 <script>
-var PRODUCTS=[{"name": "Terno Castanho", "cor": "Castanho", "tecido": "Crepe de alfaiataria", "price": "14 500 MT", "imgs": ["images/terno-1.jpg"]}, {"name": "Terno Castanho Escuro", "cor": "Castanho escuro", "tecido": "Lã fria", "price": "15 900 MT", "imgs": ["images/terno-2.jpg"]}, {"name": "Terno Castanho Riscado", "cor": "Castanho riscado", "tecido": "Sarja riscada", "price": "16 500 MT", "imgs": ["images/loja-15.jpg"]}, {"name": "Terno Xadrez", "cor": "Xadrez borgonha", "tecido": "Lã xadrez", "price": "15 500 MT", "imgs": ["images/terno-4.jpg"]}, {"name": "Terno Creme", "cor": "Creme", "tecido": "Crepe", "price": "17 500 MT", "imgs": ["images/terno-5.jpg"]}, {"name": "Terno Rosa Riscado", "cor": "Rosa riscado", "tecido": "Crepe riscado", "price": "14 900 MT", "imgs": ["images/terno-6.jpg"]}, {"name": "Terno Azul Claro", "cor": "Azul claro", "tecido": "Crepe", "price": "12 900 MT", "imgs": ["images/terno-7.jpg"]}, {"name": "Terno Bege 3 Peças", "cor": "Bege", "tecido": "Alfaiataria", "price": "18 500 MT", "imgs": ["images/terno-8.jpg"]}, {"name": "Terno Bordô Longo", "cor": "Bordô", "tecido": "Crepe", "price": "17 500 MT", "imgs": ["images/loja-2.jpg"]}, {"name": "Terno Vermelho", "cor": "Vermelho", "tecido": "Crepe", "price": "14 900 MT", "imgs": ["images/loja-3.jpg"]}, {"name": "Terno Rosa Claro", "cor": "Rosa claro", "tecido": "Crepe", "price": "13 500 MT", "imgs": ["images/loja-4.jpg"]}, {"name": "Terno Bordô com Gravata", "cor": "Bordô", "tecido": "Alfaiataria", "price": "16 200 MT", "imgs": ["images/loja-5.jpg"]}, {"name": "Terno Bordô com Lenço", "cor": "Bordô", "tecido": "Crepe", "price": "15 800 MT", "imgs": ["images/loja-6.jpg"]}, {"name": "Terno Branco com Gravata Preta", "cor": "Branco", "tecido": "Crepe", "price": "18 500 MT", "imgs": ["images/loja-8.jpg"]}, {"name": "Terno Branco com Faixa", "cor": "Branco", "tecido": "Crepe", "price": "17 900 MT", "imgs": ["images/loja-9.jpg"]}, {"name": "Terno Amarelo", "cor": "Amarelo", "tecido": "Crepe", "price": "14 500 MT", "imgs": ["images/loja-10.jpg"]}, {"name": "Terno Branco Smoking", "cor": "Branco, lapela preta", "tecido": "Crepe smoking", "price": "19 500 MT", "imgs": ["images/loja-11.jpg"]}, {"name": "Terno Bege com Gravata Vermelha", "cor": "Bege", "tecido": "Alfaiataria", "price": "16 900 MT", "imgs": ["images/loja-12.jpg", "images/loja-13.jpg"]}, {"name": "Terno Preto Riscado", "cor": "Preto riscado", "tecido": "Sarja riscada", "price": "15 500 MT", "imgs": ["images/loja-14.jpg"]}];
+var PRODUCTS=[{"name": "Terno Castanho", "cor": "Castanho", "tecido": "Crepe de alfaiataria", "price": "14 500 MT", "imgs": ["images/terno-1.jpg"]}, {"name": "Terno Castanho Escuro", "cor": "Castanho escuro", "tecido": "Lã fria", "price": "15 900 MT", "imgs": ["images/terno-2.jpg"]}, {"name": "Terno Castanho Riscado", "cor": "Castanho riscado", "tecido": "Sarja riscada", "price": "16 500 MT", "imgs": ["images/loja-15.jpg"]}, {"name": "Terno Xadrez", "cor": "Xadrez borgonha", "tecido": "Lã xadrez", "price": "15 500 MT", "imgs": ["images/terno-4.jpg"]}, {"name": "Terno Creme", "cor": "Creme", "tecido": "Crepe", "price": "17 500 MT", "imgs": ["images/terno-5.jpg"]}, {"name": "Terno Rosa Riscado", "cor": "Rosa riscado", "tecido": "Crepe riscado", "price": "14 900 MT", "imgs": ["images/terno-6.jpg"]}, {"name": "Terno Azul Claro", "cor": "Azul claro", "tecido": "Crepe", "price": "12 900 MT", "imgs": ["images/terno-7.jpg"]}, {"name": "Terno Bege 3 Peças", "cor": "Bege", "tecido": "Alfaiataria", "price": "18 500 MT", "imgs": ["images/terno-8.jpg"]}, {"name": "Terno Bordô Longo", "cor": "Bordô", "tecido": "Crepe", "price": "17 500 MT", "imgs": ["images/loja-2.jpg"]}, {"name": "Terno Vermelho", "cor": "Vermelho", "tecido": "Crepe", "price": "14 900 MT", "imgs": ["images/loja-3.jpg"]}, {"name": "Terno Rosa Claro", "cor": "Rosa claro", "tecido": "Crepe", "price": "13 500 MT", "imgs": ["images/loja-4.jpg"]}, {"name": "Terno Bordô com Gravata", "cor": "Bordô", "tecido": "Alfaiataria", "price": "16 200 MT", "imgs": ["images/loja-5.jpg"]}, {"name": "Terno Bordô com Lenço", "cor": "Bordô", "tecido": "Crepe", "price": "15 800 MT", "imgs": ["images/loja-6.jpg"]}, {"name": "Terno Branco com Gravata Preta", "cor": "Branco", "tecido": "Crepe", "price": "18 500 MT", "imgs": ["images/loja-8.jpg"]}, {"name": "Terno Branco com Faixa", "cor": "Branco", "tecido": "Crepe", "price": "17 900 MT", "imgs": ["images/loja-9.jpg"]}, {"name": "Terno Amarelo", "cor": "Amarelo", "tecido": "Crepe", "price": "14 500 MT", "imgs": ["images/loja-10.jpg"]}, {"name": "Terno Branco Smoking", "cor": "Branco, lapela preta", "tecido": "Crepe smoking", "price": "19 500 MT", "imgs": ["images/loja-11.jpg"]}, {"name": "Terno Bege com Gravata Vermelha", "cor": "Bege", "tecido": "Alfaiataria", "price": "16 900 MT", "imgs": ["images/loja-12.jpg"]}, {"name": "Terno Preto Riscado", "cor": "Preto riscado", "tecido": "Sarja riscada", "price": "15 500 MT", "imgs": ["images/loja-14.jpg"]}];
 var cur={0:0};
 function setFeat(i,j){
   var card=document.querySelector('.card[data-i="'+i+'"]');
@@ -255,6 +272,7 @@ document.querySelectorAll('.thumb.zoomthumb').forEach(function(z){ var i=parseIn
 var modal=document.getElementById('modal');
 function openM(i){
   var p=PRODUCTS[i];
+  modal.dataset.i=i;
   document.getElementById('mImg').src=p.imgs[0];
   document.getElementById('mImg').alt=p.name;
   document.getElementById('zoom').style.backgroundImage='url('+p.imgs[0]+')';
@@ -274,5 +292,6 @@ document.getElementById('zoom').addEventListener('mousemove',function(e){
   e.currentTarget.style.backgroundPosition=x+' '+y;
 });
 </script>
+<script src="fem-cart.js"></script>
 </body>
 </html>
